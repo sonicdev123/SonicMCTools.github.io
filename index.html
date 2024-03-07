@@ -1,0 +1,304 @@
+<html lang="fa">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="server-name-title"></title>
+    <link id="server-icon" rel="shortcut icon">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/node-snackbar/0.1.16/snackbar.min.css"
+          integrity="sha512-pKdIPri9vb1aqcci9Rsl1xO7n74wHe5+RMcqRufN36EnXVtOsbct0VKDtBdhAnSCqZeny2jiZBSpXp0iDSzZ+Q=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+          crossorigin="anonymous"
+    >
+    <link href="css/style.css" type="text/css" rel="stylesheet"/>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.css"
+          integrity="sha512-Woz+DqWYJ51bpVk5Fv0yES/edIMXjj3Ynda+KWTIkGoynAMHrqTcDUQltbipuiaD5ymEo9520lyoVOo9jCQOCA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous">
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://kit.fontawesome.com/7e8b976a2c.js" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+            crossorigin="anonymous">
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"
+            integrity="sha512-WFN04846sdKMIP5LKNphMaWzU7YpMyCU245etK3g/2ARYbPK9Ub18eG+ljU96qKRCWh+quCY7yefSmlkQw1ANQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"
+            integrity="sha512-Ixzuzfxv1EqafeQlTCufWfaC6ful6WFqIz4G+dWvK0beHw0NVJwvCKSgafpy5gwNqKmgUfIBraVwkKI+Cz0SEQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer">
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/node-snackbar/0.1.16/snackbar.min.js"
+            integrity="sha512-iILlngu0qmiyIkOH6MV1RWSya+DL2uzo0cb/nKR4hqwz9H+Xnop1++f8TMw1j5CdbutXGkBUyfRUfg/hmNBfZg=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+
+<!--  Loading Box  -->
+<section id="loading">
+    <div>
+        <img id="loading-gif" src="img/loading.gif" alt="loading">
+        <p id="loading-message">
+            <i class="fa-solid fa-clock"></i>
+            منتظر باشید...
+        </p>
+    </div>
+</section>
+
+<!--    Navbar Content    -->
+<nav class="navbar custom-nav">
+    <div class="container-fluid justify-content-between d-flex">
+        <div class="nav-brand">
+            <img id="server-brand-logo" alt="server logo" src="">
+            <a id="server-name-brand"></a>
+            <p class="server-ip"
+               data-bs-toggle="tooltip"
+               data-bs-placement="right"
+               title="کلیک کنید Ip برای کپی کردن"
+            >
+                <i class="fa-solid fa-share"></i>
+                <span id="server-ip"></span>
+            </p>
+        </div>
+        <div class="nav-vote">
+            <p class="vote-count">
+                <span id="vote-count"></span>
+                Vote
+                <i class="fa-solid fa-pencil"></i>
+            </p>
+            <div class="vote-box">
+                <a href="https://discord.gg/p3GQYs5tzS" target="_blank">
+                    Click here to vote
+                    <i class="fa-solid fa-reply"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!--    Main Content    -->
+<main class="main-content">
+
+    <!--    Sidebar Content    -->
+    <section class="sidebar">
+        <div class="sidebar-header">
+            <p id="server-status"
+               data-bs-toggle="tooltip"
+               data-bs-placement="right"
+               title="وضعیت سرور"
+            >
+
+            </p>
+        </div>
+        <div class="sidebar-body">
+            <ul>
+                <li id="server-player"
+                    data-bs-toggle="tooltip"
+                    data-bs-placement="right"
+                >
+                    <i class="fa-solid fa-user"></i>
+                </li>
+                <li id="server-top-player"
+                    data-bs-toggle="tooltip"
+                    data-bs-placement="right"
+                >
+                    <i class="fa-solid fa-trophy"></i>
+                </li>
+                <li id="server-uptime-downtime"
+                    data-bs-toggle="tooltip"
+                    data-bs-placement="right"
+                >
+                    <i class="fa-regular fa-clock"></i>
+                </li>
+                <li id="server-ping"
+                    data-bs-toggle="tooltip"
+                    data-bs-placement="right"
+                >
+                    <i class="fa-solid fa-signal"></i>
+                </li>
+                <li id="server-location"
+                    data-bs-toggle="tooltip"
+                    data-bs-placement="right"
+                >
+                    <i class="fa-solid fa-map-location-dot"></i>
+                </li>
+            </ul>
+        </div>
+        <div class="sidebar-footer">
+            <ul class="social-media">
+                <li id="discord-item" class="nav-item d-none">
+                    <a id="discord-link" target="_blank">
+                        <i class="fa-brands fa-discord"></i>
+                    </a>
+                </li>
+                <li id="telegram-item" class="nav-item d-none">
+                    <a id="telegram-link" target="_blank">
+                        <i class="fa-brands fa-telegram"></i>
+                    </a>
+                </li>
+                <li id="instagram-item" class="nav-item d-none">
+                    <a id="instagram-link" target="_blank">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!--   Other Content   -->
+    <section class="other-content">
+        <main>
+
+            <!--  Header Content   -->
+            <div class="header">
+                <div class="d-flex justify-content-center">
+                    <h1 id="server-name-main">
+
+                    </h1>
+                    <div class="server-name-player"
+                         data-bs-toggle="tooltip"
+                         data-bs-placement="right"
+                         title="پلیر های انلاین"
+                    >
+                        <i class="fa-solid fa-user pe-2"></i>
+                        <p id="server-player-main">
+
+                        </p>
+                    </div>
+                </div>
+                <img id="server-banner"
+                     class="img-fluid"
+                     alt="Server banner"
+                     src="">
+            </div>
+
+            <div class="line">
+                <p></p>
+                <div></div>
+                <p></p>
+                <div></div>
+                <p></p>
+            </div>
+
+            <!--   Body Content   -->
+            <div class="container-fluid body">
+                <div class="row justify-content-center">
+
+                    <!--  Vote Box Content   -->
+                    <div class="col-xl-3 col-lg-6 col-md-9 col-sm-12">
+                        <div class="voter-box">
+                            <div class="voter-header">
+                                <h3>
+                                    <i class="fa-solid fa-square-poll-vertical"></i>
+                                    Vote list
+                                </h3>
+                            </div>
+                            <div id="voter-box" class="voter-body"></div>
+                        </div>
+                    </div>
+
+                    <!--  Mid Box Content  -->
+                    <div class="col-xl-6 col-lg-6 col-md-9 col-sm-12">
+                        <div class="mid-box">
+
+                            <!-- Gamemode Content -->
+                            <div class="gamemode-box">
+                                <div>
+                                    <h3>
+                                        <i class="fa-solid fa-dice"></i>
+                                        Gamemode List
+                                    </h3>
+                                </div>
+                                <div class="gamemode-list">
+                                    <div id="gamemode-box" class="row"></div>
+                                </div>
+                            </div>
+
+                            <!--   Notify Box Content   -->
+                            <div class="notify-box d-sm-flex d-block justify-content-around">
+
+                                <div class="notify-text-box">
+                                    <div>
+                                        <h3>
+                                            <i class="fa-solid fa-scroll"></i>
+                                            Announce
+                                        </h3>
+                                    </div>
+                                    <div class="notify-text">
+                                        <p id="announce-text"></p>
+                                    </div>
+                                </div>
+
+                                <div class="notify-text-box">
+                                    <div>
+                                        <h3>
+                                            <i class="fa-solid fa-gear"></i>
+                                            Update
+                                        </h3>
+                                    </div>
+                                    <div class="notify-text">
+                                        <p id="update-text"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Staff Box Content  -->
+                    <div class="col-xl-3 col-lg-6 col-md-9 col-sm-12">
+                        <div class="staff-box">
+                            <div>
+                                <h3>
+                                    <i class="fa-solid fa-user-tie"></i>
+                                    Staff List
+                                </h3>
+                            </div>
+                            <div id="staff-box" class="staff-list"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="line">
+                <p></p>
+                <div></div>
+                <p></p>
+                <div></div>
+                <p></p>
+            </div>
+
+            <!--   Footer Content   -->
+            <div class="footer">
+                <p>
+                    <i class="fa-regular fa-copyright"></i>
+                    Powered by
+                    <a class="mctools" href="https://mctools.ir/" target="_blank">
+                        MCTools
+                    </a>
+                    And Sonic_Dev_Team
+                </p>
+            </div>
+
+
+</body>
+<script src="js/app.js"></script>
+
+</html>
